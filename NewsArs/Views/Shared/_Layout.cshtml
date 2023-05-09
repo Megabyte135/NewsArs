@@ -1,0 +1,89 @@
+﻿@using System.Security.Claims;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" media='screen and (max-width: 768px)' href="~/css/mobile.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NewsArs</title>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="container">
+            <img src="img/logo.png" alt="NewsMedia" class="logo">
+            <div class='social'>
+                <a href="#" target='blank'><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#" target='blank'><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#" target='blank'><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" target='blank'><i class="fab fa-youtube fa-2x"></i></a>
+            </div>
+            <ul>
+                <li><a asp-action="Index">Главная</a></li>
+                <li><a asp-action="About">О нас</a></li>
+                @if (Context.User.IsInRole("Admin"))
+                {
+                    <li><a asp-controller="Article" asp-action="Create">Добавить новость</a></li>
+                    <li><a asp-controller="Category" asp-action="Create">Добавить категорию</a></li>
+                    <li><a asp-controller="Account" asp-action="Logout">Выход</a></li>
+                }
+                else
+                {
+                    <li><a asp-controller="Account" asp-action="Login">Вход</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+    <footer id='main-footer' class='py-2'>
+        <div class="container footer-container">
+            <div>
+                <img src="img/logo.png" alt="logo">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium quod ratione veniam sit harum excepturi sed quos dignissimos maxime consequatur.</p>
+            </div>
+            <div>
+                <h3>Электронная почта</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <form>
+                    <input type="email" placeholder="Почта:" required>
+                    <input type="submit" value="Отправить" class='btn btn-primary'>
+                </form>
+            </div>
+            <div>
+                <h3>Полезные ссылки</h3>
+                <ul class='list'>
+                    <li><a href="#">Поддержка</a></li>
+                    <li><a href="#">Политика</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>Присоединяйтесь к нашему клубу</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, provident.</p>
+                <a href="#" class="btn btn-secondary">Присоединиться</a>
+            </div>
+            <div>
+                <p>
+                    Copyright NewsArs &copy; 2023, by Shahodjaev Arslan
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- BUTTON TO TOP -->
+    <a href="#showcase" class="arrowUP-none">
+        <img src="img/arrow.png" alt="">
+    </a>
+    <!-- END BUTTON TO TOP -->
+
+
+    <script src="js/js.js"></script>
+</body>
+</html>
