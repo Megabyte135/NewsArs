@@ -13,6 +13,7 @@ namespace NewsArs.Models
         public string Title { get; set; }
         [Required]
         [ForeignKey("Author")]
+        [DisplayName("Автор")]
         public int AuthorId { get; set; }
         [DisplayName("Автор")]
         public User Author { get; set; }
@@ -29,7 +30,9 @@ namespace NewsArs.Models
         public DateTime CreationDate { get; set; }
         [Required]
         [ForeignKey("Category")]
+        [DisplayName("Категория")]
         public int CategoryId { get; set; }
+        [DisplayName("Категория")]
         public Category Category { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NewsArs.Data;
 using NewsArs.Models;
 using System.Diagnostics;
 
@@ -6,16 +8,19 @@ namespace NewsArs.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _db;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AppDbContext db, IWebHostEnvironment webHostEnvironment)
         {
-            _logger = logger;
+            _db = db;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Article> articles = _db.Articles.Include(u => u.Category).Take(6);
+            return View(articles);
         }
 
         public IActionResult About()

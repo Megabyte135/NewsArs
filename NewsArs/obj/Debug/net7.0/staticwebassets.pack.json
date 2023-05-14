@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\mobile.css"
     },
     {
+      "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\css\\registr.css",
+      "PackagePath": "staticwebassets\\css\\registr.css"
+    },
+    {
       "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
@@ -19,6 +23,10 @@
     {
       "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\img\\arrow.png",
       "PackagePath": "staticwebassets\\img\\arrow.png"
+    },
+    {
+      "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\img\\articles\\b792a828-e25b-4c57-8c06-0b0e3fe67806.webp",
+      "PackagePath": "staticwebassets\\img\\articles\\b792a828-e25b-4c57-8c06-0b0e3fe67806.webp"
     },
     {
       "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\img\\articles\\ent1.jpg",
@@ -51,6 +59,10 @@
     {
       "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\js\\js.js",
       "PackagePath": "staticwebassets\\js\\js.js"
+    },
+    {
+      "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\js\\scr.js",
+      "PackagePath": "staticwebassets\\js\\scr.js"
     },
     {
       "Id": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\lib\\bootstrap\\LICENSE",

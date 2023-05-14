@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/d6dkc+vxRvjAtaNPtQmlK3uYlX/98Rb2XzQTAnBJy0=",
+  "Hash": "BgsUe7iDhkVsnkk+jm8qjRA+mbT6u3ZzU/Erm6eQKkI=",
   "Source": "NewsArs",
   "BasePath": "_content/NewsArs",
   "Mode": "Default",
@@ -68,6 +68,23 @@
       "OriginalItemSpec": "wwwroot\\css\\mobile.css"
     },
     {
+      "Identity": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\css\\registr.css",
+      "SourceId": "NewsArs",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\",
+      "BasePath": "_content/NewsArs",
+      "RelativePath": "css/registr.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\registr.css"
+    },
+    {
       "Identity": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\css\\style.css",
       "SourceId": "NewsArs",
       "SourceType": "Discovered",
@@ -117,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\arrow.png"
+    },
+    {
+      "Identity": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\img\\articles\\b792a828-e25b-4c57-8c06-0b0e3fe67806.webp",
+      "SourceId": "NewsArs",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\",
+      "BasePath": "_content/NewsArs",
+      "RelativePath": "img/articles/b792a828-e25b-4c57-8c06-0b0e3fe67806.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\articles\\b792a828-e25b-4c57-8c06-0b0e3fe67806.webp"
     },
     {
       "Identity": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\img\\articles\\ent1.jpg",
@@ -253,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\js.js"
+    },
+    {
+      "Identity": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\js\\scr.js",
+      "SourceId": "NewsArs",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\",
+      "BasePath": "_content/NewsArs",
+      "RelativePath": "js/scr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\scr.js"
     },
     {
       "Identity": "D:\\Data\\Projects\\NewsArs\\NewsArs\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

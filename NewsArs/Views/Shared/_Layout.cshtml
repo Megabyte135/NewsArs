@@ -16,7 +16,7 @@
 <body>
     <nav id="main-nav">
         <div class="container">
-            <img src="img/logo.png" alt="NewsMedia" class="logo">
+            <img src="~/img/logo.png" alt="NewsMedia" class="logo">
             <div class='social'>
                 <a href="#" target='blank'><i class="fab fa-facebook fa-2x"></i></a>
                 <a href="#" target='blank'><i class="fab fa-twitter fa-2x"></i></a>
@@ -24,12 +24,13 @@
                 <a href="#" target='blank'><i class="fab fa-youtube fa-2x"></i></a>
             </div>
             <ul>
-                <li><a asp-action="Index">Главная</a></li>
-                <li><a asp-action="About">О нас</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                <li><a asp-controller="Home" asp-action="About">О нас</a></li>
                 @if (Context.User.IsInRole("Admin"))
                 {
                     <li><a asp-controller="Article" asp-action="Create">Добавить новость</a></li>
                     <li><a asp-controller="Category" asp-action="Create">Добавить категорию</a></li>
+                    <li><a asp-controller="Article" asp-action="List">Список новостей</a></li>
                     <li><a asp-controller="Account" asp-action="Logout">Выход</a></li>
                 }
                 else
@@ -82,7 +83,8 @@
         <img src="img/arrow.png" alt="">
     </a>
     <!-- END BUTTON TO TOP -->
-
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Styles", required: false)
 
     <script src="js/js.js"></script>
 </body>

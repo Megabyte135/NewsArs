@@ -17,6 +17,10 @@ namespace NewsArs.Data
         {
             Role adminRole = new Role { Id = 1, Name = "Admin" };
             Role writerRole = new Role { Id = 2, Name = "Writer" };
+            Category entertainment = new Category { Id = 1, Name = "Развлечения" };
+            Category technology = new Category { Id = 2, Name = "Технологии" };
+            Category politic = new Category { Id = 3, Name = "Политика" };
+            Category business = new Category { Id = 4, Name = "Бизнес" };
             User ownerUser = new User
             {
                 Id = 1,
@@ -27,6 +31,7 @@ namespace NewsArs.Data
             };
             modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, writerRole });
             modelBuilder.Entity<User>().HasData(new User[] { ownerUser });
+            modelBuilder.Entity<Category>().HasData(new Category[] { entertainment, technology, politic, business });
             base.OnModelCreating(modelBuilder);
         }
     }

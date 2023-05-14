@@ -1,1 +1,33 @@
-﻿
+﻿@using NewsArs.Models.ViewModels;
+@model LoginVM
+
+<head>
+    <link rel="stylesheet" href="~/css/registr.css">
+</head>
+    <div class="containerSig">
+        <div class="container__form container--signin">
+        <form method="post" class="form" id="form2">
+                <h2 class="form__title">Войти</h2>
+                <div>
+                    <input asp-for="UserName" type="email" placeholder="Почта" class="input" />
+                    <span asp-validation-for="UserName" class="error" />
+                </div>
+                <div>
+                    <input asp-for="Password" type="password" placeholder="Пароль" class="input" />
+                    <span asp-validation-for="Password" class="error" />
+                </div>
+                <button class="btn">Войти</button>
+            </form>
+        </div>
+    </div>
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/login.css">
+}
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+        <script src="scr.js"></script>
+    }
+}

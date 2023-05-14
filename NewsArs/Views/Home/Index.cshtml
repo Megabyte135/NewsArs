@@ -1,4 +1,6 @@
-﻿<header id='showcase'>
+﻿@model IEnumerable<Article>
+
+<header id='showcase'>
     <div class="container">
         <div class="showcase-container">
             <div class="showcase-content">
@@ -13,87 +15,69 @@
 <section id="home-articles" class="py-2">
     <div class="container">
         <h2>Новости недели</h2>
-        <div class="articles-container">
+        @if(Model.Count() > 0)
+        {
             <article class="card">
-                <img src="img/articles/ent1.jpg" alt="photo">
+                <img src="@WC.ImagePath@Model.First().Image" alt="photo">
                 <div>
                     <div class="category category-ent">
-                        Развлечение
+                        @Model.First().Category.Name
                     </div>
                     <h3>
-                        <a href="article.html">Lorem ipsum dolor sit amet.</a>
+                        <a asp-controller="Article" asp-action="Article" asp-route-Id="@Model.First().Id">@Model.First().Title</a>
                     </h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, facere harum dicta dolor molestias amet eos! Doloribus molestiae cum accusamus?</p>
+                    <p>@Model.First().PreviewText</p>
                 </div>
             </article>
-
-            <article class="card bg-dark">
-                <div class="category category-sports">
-                    Спорт
-                </div>
-                <h3>
-                    <a href="article.html">Lorem ipsum dolor sit amet.</a>
-                </h3>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium numquam illum ipsa corporis nemo beatae odio exercitationem vel, sit porro?</p>
-            </article>
-
-            <article class="card">
-                <img src="img/articles/tech1.jpg" alt="photo">
-                <div class="category category-tech">
-                    Технологии
-                </div>
-                <h3>
-                    <a href="article.html">Lorem ipsum dolor sit amet.</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum expedita quam quibusdam ipsum nemo maiores. Cum ipsa amet quaerat sunt.</p>
-            </article>
-
-            <article class="card">
-                <div class="category category-sports">
-                    Спорт
-                </div>
-                <h3>
-                    <a href="article.html">Lorem ipsum dolor sit amet.</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum expedita quam quibusdam ipsum nemo maiores. Cum ipsa amet quaerat sunt.</p>
-                <img src="img/articles/sports1.jpg" alt="photo">
-            </article>
-
-            <article class="card">
-                <img src="img/articles/tech2.jpg" alt="photo">
-                <div class="category category-tech">
-                    Технологии
-                </div>
-                <h3>
-                    <a href="article.html">Lorem ipsum dolor sit amet.</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum expedita quam quibusdam ipsum nemo maiores. Cum ipsa amet quaerat sunt.</p>
-            </article>
-
-            <article class="card bg-primary">
-                <div class="category category-sports">
-                    Спорт
-                </div>
-                <h3>
-                    <a href="article.html">Lorem ipsum dolor sit amet.</a>
-                </h3>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium numquam illum ipsa corporis nemo beatae odio exercitationem vel, sit porro?</p>
-            </article>
-
-            <article class="card">
-                <div>
-                    <div class="category category-ent">
-                        Развлечение
-                    </div>
-                    <h3>
-                        <a href="article.html">Lorem ipsum dolor sit amet.</a>
-                    </h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, facere harum dicta dolor molestias amet eos! Doloribus molestiae cum accusamus?</p>
-                </div>
-                <img src="img/articles/ent2.jpg" alt="photo">
-            </article>
-
-            <!-- ===================================================== 6 карточек ==================================== -->
-        </div>
+            <div class="articles-container">
+                @for (int i = 1; i < Model.Count(); i++)
+                {
+                    var item = Model.Skip(i).First();
+                    if (i % 3 == 0)
+                    {
+                        <article class="card bg-dark">
+                            <div class="category category-ent">
+                                @item.Category.Name
+                            </div>
+                            <h3>
+                                <a asp-controller="Article" asp-action="Article" asp-route-Id="@item.Id">@Model.Skip(i).First().Title</a>
+                            </h3>
+                            <p>@item.PreviewText</p>
+                        </article>
+                    }
+                    else if (i % 2 == 0)
+                    {
+                        <article class="card bg-primary">
+                            <div class="category category-ent">
+                                @item.Title
+                            </div>
+                            <h3>
+                                <a asp-controller="Article" asp-action="Article" asp-route-Id="@item.Id">@item.Category.Name</a>
+                            </h3>
+                            <p>@item.PreviewText</p>
+                        </article>
+                    }
+                    else
+                    {
+                        <article class="card">
+                            <img src="@WC.ImagePath@item.Image" alt="photo">
+                            <div>
+                                <div class="category category-ent">
+                                    @item.Category.Name
+                                </div>
+                                <h3>
+                                    <a asp-controller="Article" asp-action="Article" asp-route-Id="@item.Id">@item.Title</a>
+                                </h3>
+                                <p>@item.PreviewText</p>
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        }
+        else
+        {
+            <p>Увы, мы пока ещё не написали статьи :(</p>
+        }
     </div>
 </section>

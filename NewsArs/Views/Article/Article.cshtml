@@ -1,0 +1,39 @@
+﻿@using NewsArs;
+@using NewsArs.Models;
+@model Article
+
+<section id="article">
+    <div class="container">
+        <div class="page-container">
+            <article class="card">
+                <img src="@WC.ImagePath@Model.Image" alt="article">
+                <h1 class='l-heading'>@Model.Title</h1>
+                <div class="meta">
+                    <small>
+                        <i class="fas fa-user"></i>Автор: @Model.Author.FullName, @Model.CreationDate
+                    </small>
+                    <div class="category category-ent">@Model.Category.Name</div>
+                </div>
+                <p>@Model.Text</p>
+            </article>
+            @if (Context.User.IsInRole("Admin"))
+            {
+                <a asp-controller="Article" asp-action="Delete" asp-route-Id="@Model.Id">
+                    <aside class="card bg-secondary">
+                        <h3>Удалить статью</h3>
+                    </aside>
+                </a>
+            }
+            @*        <
+            <aside id="categories" class="card">
+            <h2>Категории</h2>
+            <ul class="list">
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Спорт</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Развлечение</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Технологии</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Мода</a></li>
+            </ul>
+            </aside>*@
+        </div>
+    </div>
+</section>
