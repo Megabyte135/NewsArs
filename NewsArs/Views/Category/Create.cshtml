@@ -4,27 +4,29 @@
     ViewData["Title"] = "Новая категория";
 }
 
-<h4>Новая категория</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Создать" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<section id="home-articles" class="py-2">
 
-<div>
-    <a asp-controller="Home" asp-action="Index">На главную</a>
-</div>
+    <div class="article-title">
+        <h2>Новая категория</h2>
+    </div>
+
+    <div class="container-article">
+
+        <div class="article">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" type="text" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Создать" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
 @section Scripts {
     @{

@@ -5,8 +5,8 @@
         <div class="showcase-container">
             <div class="showcase-content">
                 <h1>Новости</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste deserunt, at laborum accusamus veniam reprehenderit deleniti reiciendis vel animi ipsum obcaecati ex nesciunt ipsa, voluptatibus provident, quas doloribus molestias. Saepe.</p>
-                <a href="article.html" class="btn btn-primary">Подробнее</a>
+                <p>Все самые свежие мировые новости только здесь, на веб-сайте NewsArs!</p>
+                <a asp-action="About" class="btn btn-primary">О нас</a>
             </div>
         </div>
     </div>
@@ -15,22 +15,25 @@
 <section id="home-articles" class="py-2">
     <div class="container">
         <h2>Новости недели</h2>
-        @if(Model.Count() > 0)
+        @if (Model.Count() > 0)
         {
-            <article class="card">
-                <img src="@WC.ImagePath@Model.First().Image" alt="photo">
-                <div>
-                    <div class="category category-ent">
-                        @Model.First().Category.Name
-                    </div>
-                    <h3>
-                        <a asp-controller="Article" asp-action="Article" asp-route-Id="@Model.First().Id">@Model.First().Title</a>
-                    </h3>
-                    <p>@Model.First().PreviewText</p>
-                </div>
-            </article>
             <div class="articles-container">
-                @for (int i = 1; i < Model.Count(); i++)
+                @foreach (var item in Model)
+                {
+                    <article class="card">
+                        <img src="@WC.ImagePath@item.Image" alt="photo">
+                        <div>
+                            <div class="category category-ent">
+                                @item.Category.Name
+                            </div>
+                            <h3>
+                                <a asp-controller="Article" asp-action="Article" asp-route-Id="@item.Id">@item.Title</a>
+                            </h3>
+                            <p>@item.PreviewText</p>
+                        </div>
+                    </article>
+                }
+                @*@for (int i = 1; i < Model.Count(); i++)
                 {
                     var item = Model.Skip(i).First();
                     if (i % 3 == 0)
@@ -72,7 +75,7 @@
                             </div>
                         </article>
                     }
-                }
+                }*@
             </div>
         }
         else

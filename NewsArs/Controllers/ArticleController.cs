@@ -39,40 +39,21 @@ namespace NewsArs.Controllers
             return View(obj);
         }
 
-        public IActionResult List(string sortOrder="", int page = 1)
+        public IActionResult ArticleByCategory(int? id)
         {
-            int pageSize = 10;
-            ViewBag.Pages = (_db.Articles.Count() + pageSize - 1) / pageSize;
-            ViewBag.CurrentPage = page;
-            IEnumerable<Article> model = _db.Articles
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Articles
                 .Include(u => u.Category)
-                .Include(u => u.Author);
-            if (page > 1)
+                .Include(u => u.Author)
+                .FirstOrDefault(x => x.CategoryId == id);
+            if (obj == null)
             {
-                model = model
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize);
+                return NotFound();
             }
-            else
-            {
-                model = model
-                .Take(pageSize);
-            }
-            switch (sortOrder)
-            {
-                case "Category":
-                    model = model.OrderByDescending(u => u.Category.Name);
-                    break;
-                case "Author":
-                    model = model.OrderByDescending(u => u.Author.FullName);
-                    break;
-                case "Date":
-                    model = model.OrderByDescending(u => u.CreationDate);
-                    break;
-                default:
-                    break;
-            }
-            return View(model);
+            return View(obj);
         }
 
         [Authorize]
@@ -88,20 +69,28 @@ namespace NewsArs.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Article article)
         {
-            var files = HttpContext.Request.Form.Files;
-            string webRootPath = _webHostEnvironment.WebRootPath;
-            string upload = webRootPath + WC.ImagePath;
-            string fileName = Guid.NewGuid().ToString();
-            string extension = Path.GetExtension(files[0].FileName);
-            using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+            try
             {
-                files[0].CopyTo(fileStream);
+                var files = HttpContext.Request.Form.Files;
+                string webRootPath = _webHostEnvironment.WebRootPath;
+                string upload = webRootPath + WC.ImagePath;
+                string fileName = Guid.NewGuid().ToString();
+                string extension = Path.GetExtension(files[0].FileName);
+                using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                article.Image = fileName + extension;
+                article.Author = _db.Users.FirstOrDefault(x => x.Email == HttpContext.User.Identity.Name);
+                article.CreationDate = DateTime.Now;
+                _db.Articles.Add(article);
+                _db.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
-            article.Image = fileName + extension;
-            article.CreationDate = DateTime.Now;
-            _db.Articles.Add(article);
-            _db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            catch(Exception ex)
+            {
+                return View(article);
+            }
         }
 
         [Authorize]

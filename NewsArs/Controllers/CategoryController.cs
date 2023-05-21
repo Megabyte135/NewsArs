@@ -13,11 +13,11 @@ namespace NewsArs.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _db;
 
         public CategoryController(AppDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         [Authorize]
@@ -29,53 +29,52 @@ namespace NewsArs.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(Category category)
+        public IActionResult Create(Category category)
         {
-            _context.Add(category);
-            await _context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                var name = _db.Categories.FirstOrDefault(u => u.Name == category.Name);
+                if (name == null)
+                {
+                    _db.Categories.Add(category);
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    return View(category);
+                }
+            }
             return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.Categories == null)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            var obj = _db.Categories.FirstOrDefault(x => x.Id == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-
-            return View(category);
+            return View(obj);
         }
 
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeletePost(int id)
         {
-            if (_context.Categories == null)
+            var obj = _db.Categories.Find(id);
+            if (obj == null)
             {
-                return Problem("Entity set 'AppDbContext.Categories'  is null.");
+                return NotFound();
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
-            {
-                _context.Categories.Remove(category);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CategoryExists(int id)
-        {
-          return (_context.Categories?.Any(e => e.Id == id)).GetValueOrDefault();
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

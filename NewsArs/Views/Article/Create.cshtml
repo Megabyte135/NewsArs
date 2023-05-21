@@ -4,13 +4,62 @@
     ViewData["Title"] = "Новая статья";
 }
 
+<section id="home-articles" class="py-2">
 
-<h4>Новая статья</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="article-title">
+        <h2>Новая статья</h2>
+    </div>
+
+    <div class="container-article">
+
+        <div class="article">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" type="text"/>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                    <p>Картинка</p>
+                    <input type="file" name="files" id="uploadBox" />
+            </div>
+
+                <div class="form-group">
+                    <label asp-for="Text" class="control-label"></label>
+                    <input asp-for="Text" style="height: 100px; width:300px;" class="form-control" />
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PreviewText" class="control-label"></label>
+                    <input asp-for="PreviewText" style="height: 100px; width:300px;" class="form-control" />
+                    <span asp-validation-for="PreviewText" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label">Категория</label>
+                    <select asp-for="CategoryId">
+                        @foreach (var item in ViewBag.Categories)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Создать" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@*<div class="row">
+    <div class="col-md-4">
+        
+            
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -26,40 +75,15 @@
                 </select>
                 <span asp-validation-for="AuthorId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <p>Картинка</p>
-                <input type="file" name="files" id="uploadBox" multiple-class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" style="height: 100px; width:300px;" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PreviewText" class="control-label"></label>
-                <input asp-for="PreviewText" style="height: 100px; width:300px;" class="form-control" />
-                <span asp-validation-for="PreviewText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label">Категория</label>
-                <select asp-for="CategoryId">
-                    @foreach (var item in ViewBag.Categories)
-                    {
-                        <option value="@item.Id">@item.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Создать" class="btn btn-primary" />
-            </div>
-        </form>
+
+            
+            
     </div>
 </div>
 
 <div>
     <a asp-controller="Home" asp-action="Index">На главную</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
